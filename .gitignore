@@ -40,6 +40,14 @@ build
 # manual backups
 *.bkp
 
+# (large) binaries 
 *.zip
+*.deb
 
 sdk-examples/**
+
+# VS Code settings
+.vscode
+
+# project binaries
+fps/fps
