@@ -1,11 +1,13 @@
-FROM debian:10.12
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV PATH="${PATH}:/opt/KasperskyOS-Community-Edition-1.1.1.40/toolchain/bin"
+ENV PATH="${PATH}:/opt/KasperskyOS-Community-Edition-1.2.0.45/toolchain/bin"
 
-COPY KasperskyOS-Community-Edition_1.1.1.40_en.deb /kos/
 
-RUN apt-get update && apt install -y --fix-broken /kos/KasperskyOS-Community-Edition_1.1.1.40_en.deb
+RUN apt-get update && apt-get install -y unzip mc vim curl tar build-essential libcurl4-gnutls-dev python3 parted device-tree-compiler dosfstools fdisk
+COPY ./KasperskyOS-Community-Edition-1.2.0.45.zip /tmp
+RUN unzip /tmp/KasperskyOS-Community-Edition-1.2.0.45 -d /opt && rm /tmp/*.zip
+
 
 RUN mkdir -p /tmp/firefighter-drone/civetweb && \
     cd /tmp/firefighter-drone/civetweb && \
