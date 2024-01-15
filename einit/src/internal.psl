@@ -13,6 +13,7 @@ use EDL kl.rump.Dhcpcd
 use EDL kl.drivers.RAMDisk
 use EDL ffd.KlogEntity
 use EDL kl.EntropyEntity
+use EDL kl.VfsNet
 use EDL kl.drivers.DNetSrv
 use EDL kl.drivers.Bcm2711MboxArmToVc
 
@@ -87,6 +88,29 @@ response src = kl.core.Core, dst = kl.drivers.Bcm2711MboxArmToVc
 {
     grant()
 }
+
+
+request src = kl.drivers.DNetSrv, dst = kl.drivers.Bcm2711MboxArmToVc
+{
+    grant()
+}
+
+response src = kl.drivers.Bcm2711MboxArmToVc, dst = kl.drivers.DNetSrv
+{
+    grant()
+}
+
+
+request src = kl.VfsNet, dst = kl.drivers.DNetSrv
+{
+    grant()
+}
+
+response src = kl.drivers.DNetSrv, dst = kl.VfsNet
+{
+    grant()
+}
+
 
 
 // Einit
