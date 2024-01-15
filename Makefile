@@ -5,11 +5,20 @@ develop:
 	docker run --net=host --volume="`pwd`:/data" -it --rm kos:1.2.0.45 bash
 
 
-build:
+build-cardimg:
 	./cross-build.sh
 
-sim:
+build-sim:
 	./cross-build-sim.sh
 
-clean:
+sim: build-sim
+
+clean-image:
 	docker rmi kos:1.2.0.45
+
+clean-code:
+	rm -rf build
+
+clean: clean-code clean-image	
+
+rebuild: clean-code build-sim

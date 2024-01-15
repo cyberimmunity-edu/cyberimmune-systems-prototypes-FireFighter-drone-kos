@@ -12,6 +12,9 @@ use EDL kl.core.Core
 use EDL kl.rump.Dhcpcd
 use EDL kl.drivers.RAMDisk
 use EDL ffd.KlogEntity
+use EDL kl.EntropyEntity
+use EDL kl.drivers.DNetSrv
+use EDL kl.drivers.Bcm2711MboxArmToVc
 
 request src=ffd.KlogEntity, dst=kl.core.Core {
     grant()
@@ -36,6 +39,51 @@ execute src = kl.core.Core, dst = kl.core.Core
 }
 
 execute src = kl.core.Core, dst = Einit
+{
+    grant()
+}
+
+/**
+ * Allows the tasks with the kl.EntropyEntity class to send requests to the KasperskyOS
+ * kernel and get responses. This enables the kl.EntropyEntity program to use core
+ * endpoints.
+ */
+request src = kl.EntropyEntity, dst = kl.core.Core
+{
+    grant()
+}
+
+response src = kl.core.Core, dst = kl.EntropyEntity
+{
+    grant()
+}
+
+
+
+/*
+ * Allows the tasks with the kl.drivers.DNetSrv class to send requests to the KasperskyOS kernel and get
+ * responses. This enables the DNetSrv program to use core endpoints.
+ */
+request src = kl.drivers.DNetSrv, dst = kl.core.Core
+{
+    grant()
+}
+
+response src = kl.core.Core, dst = kl.drivers.DNetSrv
+{
+    grant()
+}
+
+/*
+ * Allows the tasks with the kl.drivers.Bcm2711MboxArmToVc class to send requests to the KasperskyOS kernel and get
+ * responses. This enables the Bcm2711MboxArmToVc program to use core endpoints.
+ */
+request src = kl.drivers.Bcm2711MboxArmToVc, dst = kl.core.Core
+{
+    grant()
+}
+
+response src = kl.core.Core, dst = kl.drivers.Bcm2711MboxArmToVc
 {
     grant()
 }

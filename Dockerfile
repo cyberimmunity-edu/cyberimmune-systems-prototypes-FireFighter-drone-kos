@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PATH="${PATH}:/opt/KasperskyOS-Community-Edition-1.2.0.45/toolchain/bin"
 
 
-RUN apt-get update && apt-get install -y unzip mc vim curl tar build-essential libcurl4-gnutls-dev python3 parted device-tree-compiler dosfstools fdisk
+RUN apt-get update && apt-get install -y unzip mc vim curl tar build-essential libcurl4-gnutls-dev python3 parted device-tree-compiler dosfstools fdisk doxygen
 COPY ./KasperskyOS-Community-Edition-1.2.0.45.zip /tmp
 RUN unzip /tmp/KasperskyOS-Community-Edition-1.2.0.45 -d /opt && rm /tmp/*.zip
 
