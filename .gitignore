@@ -39,3 +39,8 @@ build
 
 # manual backups
 *.bkp
+
+*.deb
+fps/fps
+.vscode
+sdk-examples
